@@ -3,7 +3,7 @@ This file is the  documentation for Fractalia, a visual mathematical art project
 
 ## What is this repository for?
 * Quick summary:  
-Fractalia is a software implementation of many visual representation of fractals
+fractal-generator is a software implementation to generate visual representation of common fractals
    - 
 * Version:  
 In development 0.09
