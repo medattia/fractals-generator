@@ -1,39 +1,43 @@
 // self explanatory
-
 #include <iostream>
 
-class Point
+struct Point
 {
-    public:
-        Point(int,int); 
-        int x;
-        int y;
-    
+    int x;
+    int y;  
 };
 
-Point::Point(int a,int b)
-{
-    x=a;
-    y=b;
-}
 
-class Triangle
+struct Triangle
 {
-    public:
-        point a;
-        point b;
-        point c;
+    struct Point a;
+    struct Point b;
+    struct Point c;
 };
 
-point center(point a, point b);
+
+struct Point center(struct Point* a, struct Point* b)
 {
-}
+    struct Point res;
+    res.x=a->x+b->x;
+    res.y=a->y+b->y;
+    return res;
+};
 int main()
 {
     int nbr;
-    Triangle t;
-    Point current;
-    Point a1(-1,0), a2(0,2), a3(1,0);
+    int max_iter=100;
+    struct Triangle t;
+    struct Point current;
+    struct Point a1, a2, a3;
+    struct Point pts[max_iter];
+    
+    a1.x =-1;
+    a1.y = 0;
+    a2.x = 0;
+    a2.y = 2; 
+    a3.x = 1;
+    a3.y = 0;
     
     t.a=a1;
     t.b=a2;
@@ -42,19 +46,24 @@ int main()
     current.x=0;
     current.y=0;
     
-    nbr = rand() % 3 + 1;
-    
-    switch (nbr)
+    for(int i=0;i<max_iter;i++)
     {
-        case 1:
-            current=center(current,a1);
-        break;
-        case 2
-            current=center(current,a2);
-        break;
-        case 3
-            current=center(current,a3);
-        break;
+        pts[i]=current;
+        nbr = rand() % 3 + 1;
+        switch (nbr)
+        {
+            case 1:
+                current=center(&current,&a1);
+            break;
+            case 2:
+                current=center(&current,&a2);
+            break;
+            case 3:
+                current=center(&current,&a3);
+            break;
+        }
+        printf("pts[%d]:\n x=%d,\n y=%d. \n",i,current.x,current.y);
     }
+    
     return 0;
 }
