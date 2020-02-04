@@ -43,9 +43,7 @@ Mohamed Attia : mohamedattia237@gmail.com
 * Well need to organize everything here
  
 ## Miscellaneous 
-
-
-* 
+* This program generates variants of classic fractal structures (Sierpensky gasket/carpet, Julia set, Mandelbrot set)
 
 ## References:
 * Chaos and Fractals: New Frontiers of Science, Peitgen, Jurgens, Saupe
