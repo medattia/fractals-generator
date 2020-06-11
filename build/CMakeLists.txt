@@ -6,6 +6,6 @@ SET(OpenCV_DIR ~/OpenCV/OpenCV4.3.0/OpenCV-master/lib/cmake/opencv4)
 project( DisplayImage )
 find_package( OpenCV REQUIRED )
 include_directories( ${OpenCV_INCLUDE_DIRS} )
-add_executable( DisplayImage ../src/chaos_game.cpp )
+add_executable( DisplayImage ../src/mandelbrot.cpp )
 target_link_libraries( DisplayImage ${OpenCV_LIBS} )
 

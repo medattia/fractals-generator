@@ -1,10 +1,9 @@
-
 BINNAME= Example
 
-LNKFLAGS= -lstdc++ -I../include `pkg-config --cflags --libs opencv`
+LNKFLAGS= -lstdc++ -lm -I../include `pkg-config --cflags --libs opencv`
 
 # Sources
-SRCS= chaos_game.cpp 
+SRCS= mandelbrot.cpp 
 OBJS= $(shell echo $(SRCS) | sed "s/\.cpp/.o/g" |sed "s/\.c/.o/g")
 
 all: $(SRCS) $(BINNAME)

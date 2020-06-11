@@ -1,15 +1,16 @@
 // Writes to the screen the first n Fibonacci numbers
 // It illustrates the usage of a static variable
+// Approximates the Golden ratio
 #include <iostream>
 #include <math.h> 
-#include <stdio.h> 
+#include <iomanip> // for std::setprecision()
 
-int fibonacci();
+unsigned long long int fibonacci();
 int main()
 {
-    int n,i;
-    double golden_ratio;
-    int fb[1000];
+    unsigned int n,i;
+    long double golden_ratio;
+    unsigned long long int fb[1000];
     
     printf("How many Fiboncci numbers ? \n ");
     scanf("%d",&n);
@@ -18,24 +19,24 @@ int main()
     for(i=1;i<=n;i++)
     {
         fb[i]=fibonacci();
-        printf("%d \t",fb[i]);
+        std::cout << "\t" << fb[i] << std::endl;
 
         if (i > 1) 
         {
-        	//dd=tab[-1];
         	golden_ratio=(double)fb[i]/ (double)fb[i-1];
-        	printf("%g \n", golden_ratio);
+        	std::cout << std::setprecision(20); // show 16 digits of precision
+        	std::cout << "\n" << golden_ratio << std::endl;
        	}
     }
 	printf(" \n");
 
     return 0;
 }
-int fibonacci()
+unsigned long long int fibonacci()
 {
-    static int _call = 0;
-    static int f0=0, f1=1;
-    int f2;
+    static unsigned long long int _call = 0;
+    static unsigned long long int f0=0, f1=1;
+    unsigned long long int f2;
     if (_call<=1)
     {
         _call++;
