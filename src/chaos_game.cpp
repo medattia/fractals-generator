@@ -1,36 +1,24 @@
-// demonstrates the 
+// demonstrates the Chaos game 
 #include <iostream>
-/// headers for openCV
-#include <opencv2/core.hpp>
+
 #include <opencv2/opencv.hpp>
-#include <opencv2/imgcodecs.hpp>
-#include <opencv2/imgproc.hpp>
-#include <opencv2/highgui.hpp>
-#include <opencv2/video.hpp>
-///macros
+
 #define window_title "Iteration "
 
-//using namespace cv;
 using namespace std;
-
-struct Point
-{
-    double x;
-    double y;  
-};
-
+using namespace cv;
 
 struct Triangle
 {
-    struct Point a;
-    struct Point b;
-    struct Point c;
+     Point2d a;
+     Point2d b;
+     Point2d c;
 };
 
 
-struct Point center(struct Point* a, struct Point* b)
+Point2d center( Point2d* a,  Point2d* b)
 {
-    struct Point center_pt;
+    Point2d center_pt;
     center_pt.x=(a->x+b->x)/2;
     center_pt.y=(a->y+b->y)/2;
     return center_pt;
@@ -38,13 +26,13 @@ struct Point center(struct Point* a, struct Point* b)
 int main()
 {
     int nbr;
-    int max_iter=500000;
+    int max_iter=50000;
     struct Triangle trgl;
-    struct Point current_pt;
-    struct Point pt_1, pt_2, pt_3;
-    struct Point pts[max_iter];
+    Point2d current_pt;
+    Point2d pt_1, pt_2, pt_3;
+    Point2d pts[max_iter];
     
-        cv::Mat img(800,1000,CV_8U, cv::Scalar(255));;
+	cv::Mat img(800,1000,CV_8U, cv::Scalar(255));;
         
     pt_1.x = 0.;
     pt_1.y = 0.;
@@ -66,9 +54,7 @@ int main()
         x_int=(int) (current_pt.x*200);
 		y_int=(int) (current_pt.y*200);
         img.at<uchar>(y_int,x_int) = 0;
-        //printf("The current point is x=%g,y=%g \n ",current_pt.x,current_pt.y);
         nbr = rand() % 3 + 1;
-        //printf("The dice roll yields %d \n ",nbr);
         switch (nbr)
         {
             case 1:
