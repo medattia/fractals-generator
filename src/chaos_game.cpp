@@ -1,69 +1,67 @@
-// self explanatory
+// demonstrates the Chaos game 
 #include <iostream>
 
-struct Point
-{
-    int x;
-    int y;  
-};
+#include <opencv2/opencv.hpp>
 
+#define window_title "Iteration "
+
+using namespace std;
+using namespace cv;
 
 struct Triangle
 {
-    struct Point a;
-    struct Point b;
-    struct Point c;
+     Point2d a;
+     Point2d b;
+     Point2d c;
 };
 
-
-struct Point center(struct Point* a, struct Point* b)
+Point2d center(Point2d* a, Point2d* b)
 {
-    struct Point res;
-    res.x=a->x+b->x;
-    res.y=a->y+b->y;
-    return res;
+    Point2d center_pt;
+    center_pt=(*a+*b)/2.;
+    return center_pt;
 };
+
 int main()
 {
     int nbr;
-    int max_iter=100;
-    struct Triangle t;
-    struct Point current;
-    struct Point a1, a2, a3;
-    struct Point pts[max_iter];
+    int max_iter=50000;
+    struct Triangle trgl;
+    Point2d current_pt(4.,4.);
+    Point2d pt_1(0.,0.), pt_2(4.,0.), pt_3(2.,2.);
+    Point2d pts[max_iter];
+	Point2i int_pt;
+	
+	Mat img(800,1000,CV_8U, Scalar(255));;
     
-    a1.x =-1;
-    a1.y = 0;
-    a2.x = 0;
-    a2.y = 2; 
-    a3.x = 1;
-    a3.y = 0;
-    
-    t.a=a1;
-    t.b=a2;
-    t.c=a3;
-    
-    current.x=0;
-    current.y=0;
-    
+    trgl.a=pt_1;
+    trgl.b=pt_2;
+    trgl.c=pt_3;
+
     for(int i=0;i<max_iter;i++)
     {
-        pts[i]=current;
+        pts[i]=current_pt;
+		int_pt=(cv::Point_<int>) (current_pt*200);
+        img.at<uchar>(int_pt) = 0;
         nbr = rand() % 3 + 1;
         switch (nbr)
         {
             case 1:
-                current=center(&current,&a1);
+                current_pt=center(&current_pt,&pt_1);
             break;
             case 2:
-                current=center(&current,&a2);
+                current_pt=center(&current_pt,&pt_2);
             break;
             case 3:
-                current=center(&current,&a3);
+                current_pt=center(&current_pt,&pt_3);
             break;
         }
-        printf("pts[%d]:\n x=%d,\n y=%d. \n",i,current.x,current.y);
+        //printf("pts[%d]:\n x=%g,\n y=%g. \n",i,current_pt.x,current_pt.y);
+	   	namedWindow(window_title, WINDOW_AUTOSIZE);
+		imshow(window_title, img);
+		cv::waitKey(1);	
     }
-    
+
+	cv::destroyAllWindows();
     return 0;
 }

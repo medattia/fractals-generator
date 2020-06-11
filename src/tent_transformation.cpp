@@ -1,7 +1,8 @@
 // Writes to the screen the tent transformation sequence
+// demonstrates a onestep machine based on a combined formula
 
 #include <iostream>
-double fibonacci();
+
 int main()
 {
     int A,i;
@@ -11,7 +12,7 @@ int main()
     {
         if(A%2 == 0) A=A/2;
         else A=3*A+1;
-        std::cout<<A<<endl;
+        std::cout<<A<<std::endl;
     }
     return 0;
 }

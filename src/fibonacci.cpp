@@ -1,26 +1,41 @@
 // Writes to the screen the first n Fibonacci numbers
 // It illustrates the usage of a static variable
 #include <iostream>
-double fibonacci();
+#include <math.h> 
+#include <stdio.h> 
+
+int fibonacci();
 int main()
 {
     int n,i;
-    printf("How many Fiboncci numbers \n ?");
+    double golden_ratio;
+    int fb[1000];
+    
+    printf("How many Fiboncci numbers ? \n ");
     scanf("%d",&n);
     printf("The first %d Fibonacci numbers are :\n",n);
+    
     for(i=1;i<=n;i++)
     {
-        double fb=fibonacci();
-        printf("%g \t",fb);
+        fb[i]=fibonacci();
+        printf("%d \t",fb[i]);
+
+        if (i > 1) 
+        {
+        	//dd=tab[-1];
+        	golden_ratio=(double)fb[i]/ (double)fb[i-1];
+        	printf("%g \n", golden_ratio);
+       	}
     }
-    //getch();
+	printf(" \n");
+
     return 0;
 }
-double fibonacci()
+int fibonacci()
 {
     static int _call = 0;
-    static double f0=0, f1=1;
-    double f2;
+    static int f0=0, f1=1;
+    int f2;
     if (_call<=1)
     {
         _call++;
