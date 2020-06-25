@@ -1,6 +1,4 @@
 # README #
-.
-
 
 ## What is this repository for?
 * Quick summary:  
@@ -28,12 +26,14 @@ In development 0.09 - December 2019
 * /src/tent_transformation.cpp: write a sequence of numbers based on a combined formula
 * /src/sierpensky_carpet.cpp: draws the  sierpensky carpet
 * /src/cantor_set.cpp: displays the cantor set
+* /src/pascals_triangle.cpp: computes the coefficients in Pascal's triangle
 ## Who do I talk to? 
 Mohamed Attia : mohamedattia237@gmail.com
 
 
 ## TODO
 
+* emprove the cantor set display
 * edit cmake file 
 * edit Makefile
 * integrate the algorithms into one toolbox
