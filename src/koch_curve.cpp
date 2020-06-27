@@ -67,13 +67,18 @@ int main()
 	circle(generator, centroid, 4, (0)) ;
 	// image is the title of the window 
 	imshow("generator", generator) ;
+	
 	resize(generator, iter, Size(generator.cols/3, generator.rows/3), 0, 0, INTER_LINEAR);
-
 	koch(iter,generator);
-		imshow("iter", generator);
-
-;
-
+	imshow("iter 1", generator) ;
+	
+	resize(generator, iter, Size(generator.cols/3, generator.rows/3), 0, 0, INTER_LINEAR);
+	koch(iter,generator);
+	imshow("iter 2", generator) ;
+	
+	resize(generator, iter, Size(generator.cols/3, generator.rows/3), 0, 0, INTER_LINEAR);
+	koch(iter,generator);
+	imshow("iter 3", generator) ;
 	waitKey(0) ;
     return 0;
 }
