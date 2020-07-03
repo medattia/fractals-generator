@@ -64,7 +64,7 @@ int main()
 	// (X, Y) = (x1 + x2 + x3//3, y1 + y2 + y3//3)  
 	Point2d centroid  ((p1.x+p2.x+p3.x)/3, (p1.y+p2.y+p3.y)/3); 
 	// Drawing the centroid on the window   
-	circle(generator, centroid, 4, (0)) ;
+	circle(generator, centroid, 5, Scalar(128,0,0), -1);
 	// image is the title of the window 
 	imshow("generator", generator) ;
 	
