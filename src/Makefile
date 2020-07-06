@@ -3,7 +3,7 @@ BINNAME= binary
 LNKFLAGS= -lstdc++ -lm -I../include `pkg-config --cflags --libs opencv`
 
 # Sources
-SRCS= sierpensky_carpet.cpp 
+SRCS= spirals.cpp 
 OBJS= $(shell echo $(SRCS) | sed "s/\.cpp/.o/g" |sed "s/\.c/.o/g")
 
 all: $(SRCS) $(BINNAME)
