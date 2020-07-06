@@ -6,7 +6,7 @@ This repository contains implementations for the algorithm discussed in the book
 Step by step I am adding code to the repository making it richer day by day.
    - 
 * Version:  
-In development 0.09 - December 2019
+In development 0.1 - July 2020
 
 ## How do I get set up?
 * Summary of set up:  
@@ -27,12 +27,16 @@ In development 0.09 - December 2019
 * /src/sierpensky_carpet.cpp: draws the  sierpensky carpet
 * /src/cantor_set.cpp: displays the cantor set
 * /src/pascals_triangle.cpp: computes the coefficients in Pascal's triangle
+* /src/koch_curve.cpp:	draws the Koch curve and the Koch island
+* src/pythagorean_trees.cpp: draws the square root spiral
 ## Who do I talk to? 
 Mohamed Attia : mohamedattia237@gmail.com
 
 
 ## TODO
-
+* Menger sponge
+* add koch island
+* show pascal's triangle
 * emprove the cantor set display
 * edit cmake file 
 * edit Makefile

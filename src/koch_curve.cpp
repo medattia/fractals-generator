@@ -12,7 +12,7 @@ const int width=300;
 const int height=89;
 
 
-void koch(Mat &input, Mat &output)
+void koch_curve(Mat &input, Mat &output)
 {
 	input.copyTo(output.rowRange(output.rows-input.rows, output.rows).colRange(0,input.cols));
 	input.copyTo(output.rowRange(output.rows-input.rows, output.rows).colRange(output.cols-input.cols, output.cols));
@@ -43,9 +43,26 @@ void koch(Mat &input, Mat &output)
 	croppedImage.copyTo(output.rowRange(00, croppedImage.rows).colRange(150, 150+croppedImage.cols));   
 	return;
 }
+
+void koch_island(Mat &input, Mat &output)
+{
+	// construct upper part
+    Range rows(0,input.rows/2+10);
+	Range cols(0,input.cols);
+	Mat croppedImage = input(rows,cols);
+	croppedImage.copyTo(output.rowRange(0, croppedImage.rows).colRange(0, output.cols));
+	// construct lower part
+	Point2f croppedcenter(croppedImage.cols/2.0F, croppedImage.rows/2.0F);	
+	Mat rot_mat = getRotationMatrix2D(croppedcenter, 180, 1.0);
+	Mat dst;
+	warpAffine(croppedImage, dst, rot_mat, croppedImage.size());
+	dst.copyTo(output.rowRange(output.rows/2+1, output.rows).colRange(0, output.cols));
+	return;
+}
+
 int main()
 {
-	Mat generator(height,width,CV_8U, Scalar(0));;
+	Mat generator(height,width,CV_8U, Scalar(0));
   	Mat iter;
 	// Three vertices(tuples) of the triangle  
 	Point2d p1(200, sin(PI/3)*100) ;
@@ -59,25 +76,25 @@ int main()
 	line(generator, p1, p2, (255, 255, 255), 1) ;
 	line(generator, p2, p3, (255, 255, 255), 1) ;
 	line(generator, p4, p3, (255, 255, 255), 1) ;
- 	line(generator, p5, p1, (255, 255, 255), 1) ; 
-	// finding centroid using the following formula 
-	// (X, Y) = (x1 + x2 + x3//3, y1 + y2 + y3//3)  
-	Point2d centroid  ((p1.x+p2.x+p3.x)/3, (p1.y+p2.y+p3.y)/3); 
-	// Drawing the centroid on the window   
-	circle(generator, centroid, 5, Scalar(128,0,0), -1);
-	// image is the title of the window 
+ 	line(generator, p5, p1, (255, 255, 255), 1) ;   
+	
+	// creating the generator iteration 0
 	imshow("generator", generator) ;
-	
+	// iteraion 1	
 	resize(generator, iter, Size(generator.cols/3, generator.rows/3), 0, 0, INTER_LINEAR);
-	koch(iter,generator);
+	koch_curve(iter,generator);
 	imshow("iter 1", generator) ;
-	
+
+	// iteraion 2	
 	resize(generator, iter, Size(generator.cols/3, generator.rows/3), 0, 0, INTER_LINEAR);
-	koch(iter,generator);
+	koch_curve(iter,generator);
 	imshow("iter 2", generator) ;
-	
+		Mat island (height+20,width,CV_8U, Scalar(0));
+	koch_island(generator, island)		;
+		imshow("island", island) ;
+	// iteraion 3	
 	resize(generator, iter, Size(generator.cols/3, generator.rows/3), 0, 0, INTER_LINEAR);
-	koch(iter,generator);
+	koch_curve(iter,generator);
 	imshow("iter 3", generator) ;
 	waitKey(0) ;
     return 0;
