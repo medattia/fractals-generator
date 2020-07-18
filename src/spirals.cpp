@@ -102,10 +102,79 @@ void Sqrt_spiral(int &iterations, Mat &output)
 	return ;
 }
 
+void polygonal_spiral(Mat &output, int &iterations)
+{
+    int a=200;
+	Point2d start(100,0);// first raw first column
+    Point2d pt_right(0, 0); 
+	Point2d pt_down(0, 0); 
+    Point2d pt_down2(0, 0); 
+    Point2d pt_left(0, 0);
+    Point2d pt_left2(0, 0); 
+    Point2d pt_up(0, 0);
+    Point2d pt_up2(0, 0);
+    	pt_right.x=start.x+a;
+	    pt_right.y=start.y; 
+	    pt_down.x=pt_right.x;
+	    pt_down.y=pt_right.y+a; 
+	    a=a/2;
+	    pt_down2.x=pt_down.x;
+	    pt_down2.y=pt_down.y+a;
+	    pt_left.x=pt_down2.x-a;
+	    pt_left.y=pt_down2.y; 
+	    a=2*a/3;
+	    pt_left2.x=pt_left.x-a;
+	    pt_left2.y=pt_left.y; 
+	    pt_up.x=pt_left2.x;
+	    pt_up.y=pt_left2.y-a; 
+	    a=3*a/4;
+	    pt_up2.x=pt_up.x;
+	    pt_up2.y=pt_up.y-a; 
+   
+        line(output, start, pt_right, (0, 0, 0), 1) ; 
+        line(output, pt_right, pt_down, (0, 0, 0), 1) ; 
+     	line(output, pt_down, pt_down2, (0, 0, 0), 1) ; 
+     	line(output, pt_down2, pt_left, (0, 0, 0), 1) ; 
+        line(output, pt_left, pt_left2, (0, 0, 0), 1) ;    
+        line(output, pt_left2, pt_up, (0, 0, 0), 1) ;    
+        line(output, pt_up, pt_up2, (0, 0, 0), 1) ;    
+    for (int i=2;i<iterations;i++)
+ 	{
+	    a=4*a/5;
+        cout<<a<< endl;
+ 		start = pt_up2; 
+    	pt_right.x=start.x+a;
+	    pt_right.y=start.y; 
+	    pt_down.x=pt_right.x;
+	    pt_down.y=pt_right.y+a; 
+	    a=5*a/6;
+	    pt_down2.x=pt_down.x;
+	    pt_down2.y=pt_down.y+a;
+	    pt_left.x=pt_down2.x-a;
+	    pt_left.y=pt_down2.y; 
+	    a=6*a/7;
+	    pt_left2.x=pt_left.x-a;
+	    pt_left2.y=pt_left.y; 
+	    pt_up.x=pt_left2.x;
+	    pt_up.y=pt_left2.y-a; 
+	    a=7*a/8;
+	    pt_up2.x=pt_up.x;
+	    pt_up2.y=pt_up.y-a; 
+        line(output, start, pt_right, (0, 0, 0), 1) ; 
+        line(output, pt_right, pt_down, (0, 0, 0), 1) ; 
+     	line(output, pt_down, pt_down2, (0, 0, 0), 1) ; 
+     	line(output, pt_down2, pt_left, (0, 0, 0), 1) ; 
+        line(output, pt_left, pt_left2, (0, 0, 0), 1) ;    
+        line(output, pt_left2, pt_up, (0, 0, 0), 1) ;    
+        line(output, pt_up, pt_up2, (0, 0, 0), 1) ;    
+ 	}
+	return ;
+}
+
 int main(int argc, char const *argv[])
 {
-
 	Mat img(400,600,CV_8U, Scalar(255));
+	Mat img2(400,600,CV_8U, Scalar(255));
 
 	int nbr_iter;
 	cout << "Enter number of iterations: " << endl;
@@ -127,7 +196,10 @@ int main(int argc, char const *argv[])
 	imshow(window_title, img);
 	waitKey(0);	
 	
+	polygonal_spiral(img2,nbr_iter);	
+	imshow("polygonal_spiral", img2);
+	waitKey(0);		
 
-	destroyAllWindows();
+
     return 0;
 }

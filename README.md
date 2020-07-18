@@ -28,12 +28,14 @@ In development 0.1 - July 2020
 * /src/cantor_set.cpp: displays the cantor set
 * /src/pascals_triangle.cpp: computes the coefficients in Pascal's triangle
 * /src/koch_curve.cpp:	draws the Koch curve and the Koch island
-* src/pythagorean_trees.cpp: draws the square root spiral
+* /src/spirals.cpp: draws the square root spiral, Archemedean spiral and logarithmic spiral
 ## Who do I talk to? 
 Mohamed Attia : mohamedattia237@gmail.com
 
 
 ## TODO
+* finish the polygonal spirain in /src/spirals.cpp 
+* finish logarithmic spiral in /src/spirals.cpp
 * Menger sponge
 * add koch island
 * show pascal's triangle

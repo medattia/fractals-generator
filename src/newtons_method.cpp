@@ -22,7 +22,7 @@ double sqrt_feedback_machine(const int &x0, int &a, int &iterations)
 int main(int argc, char const *argv[])
 {
 	int x0, a, iterations;
-	cout << "Enter the number to squre: " << endl;
+	cout << "Enter the number to squre root: " << endl;
 	cin>> a ;
 	cout << "Enter the initial guess: " << endl;
 	cin>> x0 ;	
