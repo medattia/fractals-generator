@@ -29,11 +29,13 @@ In development 0.1 - July 2020
 * /src/pascals_triangle.cpp: computes the coefficients in Pascal's triangle
 * /src/koch_curve.cpp:	draws the Koch curve and the Koch island
 * /src/spirals.cpp: draws the square root spiral, Archemedean spiral and logarithmic spiral
+* /src/3-2__curve.cpp: draws 3/2_curve to the screen
 ## Who do I talk to? 
 Mohamed Attia : mohamedattia237@gmail.com
 
 
 ## TODO
+* finish 3/2 curve
 * finish the polygonal spirain in /src/spirals.cpp 
 * finish logarithmic spiral in /src/spirals.cpp
 * Menger sponge
